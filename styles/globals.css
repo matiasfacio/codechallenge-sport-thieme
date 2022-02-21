@@ -1,0 +1,104 @@
+#root {
+  --main-text-dark: #292929;
+  --main-primary-color: rgb(51, 118, 183);
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+form button {
+  align-self: center;
+  margin-top: 20px;
+}
+
+.coaches_container {
+  display: flex;
+  gap: 30px;
+}
+
+button {
+  padding: 5px 10px;
+  max-width: fit-content;
+}
+
+nav {
+  background-color: rgb(51, 118, 183);
+  color: white;
+  padding: 1.5rem;
+}
+
+nav ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+nav ul li {
+  cursor: pointer;
+}
+
+.custom_list_subheader {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: rgb(51, 118, 183);
+  padding: 0;
+}
+
+.custom_list_subheader p {
+  cursor: pointer;
+}
+
+.MuiSvgIcon-root {
+  cursor: pointer;
+}
+
+.title {
+  margin: 20px 0;
+}
+
+.itemList:hover {
+  text-decoration: underline;
+}
+
+#editingIcon {
+  margin-left: 10px;
+  visibility: hidden;
+}
+
+#field:hover #editingIcon {
+  visibility: visible;
+}
+
+.loadingState {
+  display: flex;
+  justify-content: center;
+  padding: 0.6rem;
+  background-color: rgb(238, 238, 181);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

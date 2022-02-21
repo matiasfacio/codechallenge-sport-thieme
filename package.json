@@ -1,0 +1,56 @@
+{
+  "name": "sport-thieme-challenge",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "setup": "yarn prisma migrate dev --name init",
+    "predev": "yarn generate:prisma",
+    "generate:prisma": "yarn prisma generate",
+    "generate:types": "graphql-codegen --config codegen.yml"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.5.8",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.4.2",
+    "@mui/material": "^5.4.0",
+    "@prisma/client": "3.8.1",
+    "apollo-server-micro": "3.6.2",
+    "class-validator": "0.13.2",
+    "graphql": "15.8.0",
+    "graphql-fields": "2.0.3",
+    "graphql-scalars": "1.14.1",
+    "graphql-type-json": "0.3.2",
+    "micro": "9.3.4",
+    "micro-cors": "^0.1.1",
+    "next": "12.0.10",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-spinners": "^0.11.0",
+    "reflect-metadata": "0.1.13",
+    "type-graphql": "1.1.1"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^6.0.0-alpha.5",
+    "@graphql-codegen/cli": "2.3.0",
+    "@graphql-codegen/introspection": "2.1.0",
+    "@graphql-codegen/typescript": "2.4.1",
+    "@graphql-codegen/typescript-operations": "2.2.1",
+    "@graphql-codegen/typescript-react-apollo": "3.2.2",
+    "@types/faker": "^6.6.9",
+    "@types/micro-cors": "^0.1.2",
+    "@types/node": "17.0.15",
+    "@types/react": "17.0.39",
+    "eslint": "8.8.0",
+    "eslint-config-next": "12.0.10",
+    "prisma": "3.8.1",
+    "typegraphql-prisma": "^0.18.4",
+    "typescript": "4.5.5"
+  }
+}

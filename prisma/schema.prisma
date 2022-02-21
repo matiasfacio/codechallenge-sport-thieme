@@ -1,0 +1,50 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = "file:./dev.db"
+}
+
+generator typegraphql {
+    provider = "typegraphql-prisma"
+}
+
+model Coach {
+    id           Int         @id @default(autoincrement())
+    email        String      @unique
+    name         String
+    phone        String?
+    street       String?
+    streetNumber String?
+    zip          String?
+    city         String?
+    website      String?
+    specialties  Specialty[]
+    posts        Post[]
+}
+
+model Specialty {
+    id      Int     @id @default(autoincrement())
+    name    String
+    coaches Coach[]
+}
+
+model Post {
+    id       Int       @id @default(autoincrement())
+    title    String
+    content  String
+    author   Coach     @relation(fields: [coachId], references: [id])
+    coachId  Int
+    comments Comment[]
+}
+
+model Comment {
+    id     Int    @id @default(autoincrement())
+    text   String
+    name   String
+    email  String
+    post   Post   @relation(fields: [postId], references: [id])
+    postId Int
+}
