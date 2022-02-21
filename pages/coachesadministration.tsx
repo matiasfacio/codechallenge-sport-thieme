@@ -18,11 +18,7 @@ import FirstPageIcon from "@mui/icons-material/FirstPage";
 import { Coach } from "../generated/graphql-generated-types";
 import { listOrderContext } from "../context/listOrderContext";
 
-interface CoachesListProps {
-  totalCoaches: number;
-}
-
-const CoachesList: VFC<CoachesListProps> = ({ totalCoaches }) => {
+const CoachesList: VFC = () => {
   const {
     order,
     setOrder,
