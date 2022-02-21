@@ -43,8 +43,14 @@ interface CoachesListProps {
 }
 
 const CoachesList: VFC<CoachesListProps> = ({ totalCoaches }) => {
-  const { order, setOrder, pagination, setPagination, resetPagination } =
-    React.useContext(listOrderContext);
+  const {
+    order,
+    setOrder,
+    pagination,
+    resetPagination,
+    handleNextPageClick,
+    handlePrevPageClick,
+  } = React.useContext(listOrderContext);
   const { data, error, loading } = useQuery(QUERY_ALL_COACHES_PAGINATION, {
     variables: {
       skip: pagination,
@@ -54,26 +60,6 @@ const CoachesList: VFC<CoachesListProps> = ({ totalCoaches }) => {
       },
     },
   });
-
-  const handlePrevPageClick = () => {
-    setPagination((prev) => {
-      if (prev - 10 < 0) {
-        return 0;
-      } else {
-        return prev - 10;
-      }
-    });
-  };
-
-  const handleNextPageClick = () => {
-    setPagination((prev) => {
-      if (prev + 10 >= totalCoaches) {
-        return 0;
-      } else {
-        return prev + 10;
-      }
-    });
-  };
 
   const [addCoach, setAddCoach] = React.useState<boolean>(false);
 
@@ -139,7 +125,7 @@ const CoachesList: VFC<CoachesListProps> = ({ totalCoaches }) => {
         <Pagination
           onReset={resetPagination}
           onClickPrev={handlePrevPageClick}
-          onClickNext={handleNextPageClick}
+          onClickNext={() => handleNextPageClick(totalCoaches)}
         />
       </Box>
       {addCoach && (
