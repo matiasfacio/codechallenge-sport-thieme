@@ -3,10 +3,7 @@ import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import {
-  QUERY_ALL_COACHES_PAGINATION,
-  QUERY_ALL_COACHES_UNORDED,
-} from "../graphql/coaches";
+import { QUERY_ALL_COACHES_PAGINATION } from "../graphql/coaches";
 import { useQuery } from "@apollo/client";
 import Link from "next/link";
 import ListSubheader from "@mui/material/ListSubheader";
@@ -19,24 +16,7 @@ import AddCoachModal from "../components/coaches/AddCoachModal";
 import { Button, ButtonGroup, Typography, Container } from "@mui/material";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import { Coach } from "../generated/graphql-generated-types";
-import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { listOrderContext } from "../context/listOrderContext";
-
-export const getServerSideProps = async () => {
-  const client = new ApolloClient({
-    uri: "http://localhost:3000/api",
-    cache: new InMemoryCache(),
-  });
-  const result = await client.query({
-    query: QUERY_ALL_COACHES_UNORDED,
-  });
-
-  return {
-    props: {
-      totalCoaches: result.data.coaches.length,
-    },
-  };
-};
 
 interface CoachesListProps {
   totalCoaches: number;
@@ -125,7 +105,7 @@ const CoachesList: VFC<CoachesListProps> = ({ totalCoaches }) => {
         <Pagination
           onReset={resetPagination}
           onClickPrev={handlePrevPageClick}
-          onClickNext={() => handleNextPageClick(totalCoaches)}
+          onClickNext={handleNextPageClick}
         />
       </Box>
       {addCoach && (
