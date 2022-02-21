@@ -36,34 +36,6 @@ export const listOfFavorites = makeVar([]);
 
 export type InputUpdate = Record<string, string>;
 
-export const getServerSideProps = async ({ params }) => {
-  const { coachId } = params;
-  const client = new ApolloClient({
-    uri: "http://localhost:3000/api",
-    cache: new InMemoryCache(),
-  });
-  const result = await client.query({
-    query: QUERY_ONE_COACH,
-    variables: {
-      where: {
-        id: parseInt(coachId),
-      },
-    },
-  });
-
-  if (!result) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {
-      data: result.data,
-    },
-  };
-};
-
 type CoachList = {
   coach: Coach;
 };
@@ -260,4 +232,32 @@ const DeleteModal: VFC<DeleteModalProps> = ({ open, onClose, onConfirm }) => {
       </DialogActions>
     </Dialog>
   );
+};
+
+export const getServerSideProps = async ({ params }) => {
+  const { coachId } = params;
+  const client = new ApolloClient({
+    uri: "http://localhost:3000/api",
+    cache: new InMemoryCache(),
+  });
+  const result = await client.query({
+    query: QUERY_ONE_COACH,
+    variables: {
+      where: {
+        id: parseInt(coachId),
+      },
+    },
+  });
+
+  if (!result) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      data: result.data,
+    },
+  };
 };
