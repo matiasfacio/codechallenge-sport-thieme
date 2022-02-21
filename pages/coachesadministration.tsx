@@ -38,11 +38,11 @@ export const getServerSideProps = async () => {
   };
 };
 
-interface CoachListProps {
+interface CoachesListProps {
   totalCoaches: number;
 }
 
-const CoachesList: VFC<CoachListProps> = ({ totalCoaches }) => {
+const CoachesList: VFC<CoachesListProps> = ({ totalCoaches }) => {
   const { order, setOrder, pagination, setPagination, resetPagination } =
     React.useContext(listOrderContext);
   const { data, error, loading } = useQuery(QUERY_ALL_COACHES_PAGINATION, {
