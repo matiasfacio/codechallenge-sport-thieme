@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { VFC } from "react";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -133,7 +133,7 @@ export default function CoachesList({ totalCoaches }) {
           })}
         </List>
         <Pagination
-          resetPagination={resetPagination}
+          onReset={resetPagination}
           onClickPrev={handlePrevPageClick}
           onClickNext={handleNextPageClick}
         />
@@ -149,7 +149,17 @@ export default function CoachesList({ totalCoaches }) {
   );
 }
 
-const Pagination = ({ onClickPrev, onClickNext, resetPagination }) => {
+interface PaginationProps {
+  onClickPrev: () => void;
+  onClickNext: () => void;
+  onReset: () => void;
+}
+
+const Pagination: VFC<PaginationProps> = ({
+  onClickPrev,
+  onClickNext,
+  onReset,
+}) => {
   return (
     <ButtonGroup
       style={{
@@ -160,7 +170,7 @@ const Pagination = ({ onClickPrev, onClickNext, resetPagination }) => {
       }}
     >
       <Button
-        onClick={resetPagination}
+        onClick={onReset}
         variant="text"
         startIcon={<FirstPageIcon />}
       ></Button>
